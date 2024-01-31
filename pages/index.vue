@@ -12,6 +12,6 @@ section
   display: grid
   grid-template-columns: 3fr 1fr
   grid-gap: 1em
-  width: 70%
+  max-width: 1000px
   margin: 0 auto
 </style>

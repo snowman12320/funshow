@@ -8,6 +8,15 @@ defineProps({
 
 const button = ref(null);
 
+/**
+ * @param 
+ * movementX: 正負方向
+ * movementY: 正負方向
+ * getContainerStyle: 取得目前的style
+ * leftValue: 取得目前的left值
+ * topValue: 取得目前的top值
+ */
+
 const onMouseDrag = ({ movementX, movementY }) => {
   let getContainerStyle = window.getComputedStyle(button.value);
   let leftValue = parseInt(getContainerStyle.left);
@@ -17,12 +26,15 @@ const onMouseDrag = ({ movementX, movementY }) => {
 };
 
 const onMouseDown = () => {
-  console.log(button.value);
   button.value.addEventListener('mousemove', onMouseDrag);
 };
 
 const onMouseUp = () => {
   button.value.removeEventListener('mousemove', onMouseDrag);
+};
+
+const onDoubleClick = () => {
+  window.alert('double click');
 };
 </script>
 
@@ -33,6 +45,7 @@ const onMouseUp = () => {
     @mousedown="onMouseDown"
     @mouseup="onMouseUp"
     @mouseleave="onMouseUp"
+    @dblclick="onDoubleClick"
   >
     {{ label }}
   </div>

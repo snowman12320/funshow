@@ -9,5 +9,14 @@ export default defineNuxtConfig({
   modules: ['@vueuse/nuxt'],
   imports: {
     autoImport: true,
+    dirs: ['composables/**'],
   },
-}); 
+  css: ['./assets/css/main.sass'],
+  build: {
+    loaders: {
+      scss: {
+        additionalData: `@import "./assets/css/main.sass";`,
+      },
+    },
+  },
+});
