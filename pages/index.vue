@@ -1,17 +1,31 @@
 <template>
-  <section>
-    <DraggableView />
-    <SidebarView />
-  </section>
+  <main>
+    <h1>Five-in-a-Row (game)</h1>
+    <nuxt-link to="/indexView">START</nuxt-link>
+  </main>
 </template>
 
 <style lang="sass" scoped>
 $black: #000
+$white: #fff
+$breakpoint: 768px
 
-section
-  display: grid
-  grid-template-columns: 3fr 1fr
-  grid-gap: 1em
-  max-width: 1000px
+main
   margin: 0 auto
+  text-align: center
+
+h1
+  text-align: center
+  margin-bottom: 3em
+
+a
+  text-decoration: none
+  color: $black
+  font-size: 2em
+  border: 2px solid $black
+  &:hover
+    color: $white
+    cursor: pointer
+    outline: none
+    background: $black
 </style>

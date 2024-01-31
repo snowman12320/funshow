@@ -1,19 +1,23 @@
 <script lang="ts" setup>
-const selectedListStore: SelectedListStore = useSelectedListStore();
+interface btnListState {
+  value: { label: string; color: string }[];
+}
+const btnListState: btnListState = useBtnListStore();
 
-const delItem = (label) => {
-  selectedListStore.value = selectedListStore.value.filter(
-    (item) => item.label !== label
+const delItem = (label: string) => {
+  btnListState.value = btnListState.value.filter(
+    (item: { label: string }) => item.label !== label
   );
 };
 </script>
 
 <template>
   <main>
-    <div class="item" v-for="item in selectedListStore" :key="item.label" >
+    <div class="item" v-for="item in btnListState" :key="item.label">
       <span>{{ item.label }}</span>
       <button type="button" @click="delItem(item.label)">Delete</button>
     </div>
+    <p v-if="btnListState.length === 0" class="tip">List is empty.</p>
   </main>
 </template>
 
@@ -21,6 +25,7 @@ const delItem = (label) => {
 $black: #000
 $white: #fff
 $red: #ff0000
+$breakpoint: 768px
 
 main
   height: 500px
@@ -35,6 +40,7 @@ main
   box-sizing: border-box
   width: 300px
   place-items: center
+  margin: 0 auto
 .item
   width: 200px
   height: 50px
@@ -42,7 +48,7 @@ main
   border: 2px solid $black
   color: $black
   display: flex
-  justify-content: space-around 
+  justify-content: space-around
   align-items: center
   font-size: 2em
   padding: 0 10px
@@ -54,8 +60,13 @@ main
     background-color: $red
     color: $white
     cursor: pointer
-    outline: none 
+    outline: none
     &:hover
       background-color: $white
       color: $black
+.tip
+  position: absolute
+  color: $black
+  font-size: 2em
+  text-align: center
 </style>

@@ -1,9 +1,9 @@
 <script lang="ts">
 useSeoMeta({
-  title: 'fun show',
+  title: 'Five-in-a-Row (game)',
   ogTitle: 'fun show',
-  description: 'fun show',
-  ogDescription: 'fun show',
+  description: 'fun show - Five-in-a-Row (game)',
+  ogDescription: 'fun show - Five-in-a-Row (game)',
   twitterCard: 'summary_large_image',
 });
 </script>
