@@ -58,7 +58,7 @@ const onDragEnd = (e: MouseEvent) => {
 <template>
   <main @keydown.enter="addElement" class="main-wrap">
     <button type="button" @click="addElement" class="add-btn">+ Enter</button>
-    <ChessItem
+    <gameChessItem
       v-for="btn in btnListState"
       :key="btn.label"
       :label="btn.label"

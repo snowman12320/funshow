@@ -14,8 +14,8 @@ onMounted(() => {
   <main>
     <h1>Five-in-a-Row (game)</h1>
     <section>
-      <DraggableItem />
-      <SidebarItem />
+      <gameDraggableItem />
+      <gameSidebarItem />
     </section>
     <div ref="whiteMask" class="white-mask"></div>
   </main>
