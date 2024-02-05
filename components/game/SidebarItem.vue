@@ -6,6 +6,7 @@
 const [btnListState, delItem, addItem,itemCount] = useBtnListStore();
 
 
+console.log(itemCount);
 // const delItem = (label: number) => {
 //   if (Array.isArray(btnListState)) {
 //     btnListState = btnListState.filter(
