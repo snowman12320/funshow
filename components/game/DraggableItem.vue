@@ -1,19 +1,20 @@
 <script setup lang="ts">
-let btnListState = useBtnListStore() as Array<{ label: number; color: string }>; 
+// let btnListState = useBtnListStore() as Array<{ label: number; color: string }>;
+const [btnListState, delItem, addItem] = useBtnListStore();
 
-const addItem = (() => {
-  let label: number = btnListState.value.length + 1;
-  return () => {
-    let color: string = btnListState.value.length % 2 === 0 ? '#000' : '#fff';
-    btnListState.value.push({ label, color });
-    label++;
-  };
-})();
+// const addItem = (() => {
+//   let label: number = btnListState.value.length + 1;
+//   return () => {
+//     let color: string = btnListState.value.length % 2 === 0 ? '#000' : '#fff';
+//     btnListState.value.push({ label, color });
+//     label++;
+//   };
+// })();
 
 onMounted(() => {
   window.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
-      addItem();
+      // addItem();
     }
   });
 });
