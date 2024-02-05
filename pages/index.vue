@@ -6,10 +6,6 @@
 </template>
 
 <style lang="sass" scoped>
-$black: #000
-$white: #fff
-$breakpoint: 768px
-
 main
   margin: 0 auto
   text-align: center

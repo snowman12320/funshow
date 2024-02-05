@@ -1,12 +1,13 @@
 <script setup lang="ts">
-const whiteMask = ref<HTMLElement>(null);
+const whiteMask = ref<HTMLElement>(null!);
 
 onMounted(() => {
-  whiteMask.value?.addEventListener('animationend', () => {
-    if (whiteMask.value) {
-      whiteMask.value.style.display = 'none';
-    }
-  });
+  whiteMask.value.style.display = 'none';
+  // whiteMask.value?.addEventListener('animationend', () => {
+  //   if (whiteMask.value) {
+  //     whiteMask.value.style.display = 'none';
+  //   }
+  // });
 });
 </script>
 
@@ -22,9 +23,6 @@ onMounted(() => {
 </template>
 
 <style lang="sass" scoped>
-$black: #000
-$breakpoint: 768px
-
 h1
   text-align: center
   margin-bottom: 3em

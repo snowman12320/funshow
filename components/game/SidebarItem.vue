@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-interface btnListState {
-  value: { label: string; color: string }[];
-}
-const btnListState: btnListState = useBtnListStore();
+let btnListState = useBtnListStore() as Array<{ label: number; color: string }>; // object type
 
-const delItem = (label: string) => {
-  btnListState.value = btnListState.value.filter(
-    (item: { label: string }) => item.label !== label
-  );
+const delItem = (label: number) => {
+  if (Array.isArray(btnListState)) {
+    btnListState = btnListState.filter(
+      (item: { label: number }) => item.label !== label
+    );
+  } else {
+    btnListState.value = (btnListState as { value: { label: number; color: string }[] }).value.filter(
+      (item: { label: number }) => item.label !== label
+    );
+  }
 };
 </script>
 
@@ -22,11 +25,6 @@ const delItem = (label: string) => {
 </template>
 
 <style scoped lang="sass">
-$black: #000
-$white: #fff
-$red: #ff0000
-$breakpoint: 768px
-
 main
   height: 500px
   border: 2px solid $black

@@ -1,11 +1,7 @@
 <script setup lang="ts">
-interface btnListState {
-  value: { label: string; color: string }[];
-}
+let btnListState = useBtnListStore() as Array<{ label: number; color: string }>; 
 
-const btnListState: { value: btnListState[] } = useBtnListStore();
-
-const addElement = (() => {
+const addItem = (() => {
   let label: number = btnListState.value.length + 1;
   return () => {
     let color: string = btnListState.value.length % 2 === 0 ? '#000' : '#fff';
@@ -17,7 +13,7 @@ const addElement = (() => {
 onMounted(() => {
   window.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
-      addElement();
+      addItem();
     }
   });
 });
@@ -56,8 +52,8 @@ const onDragEnd = (e: MouseEvent) => {
 </script>
 
 <template>
-  <main @keydown.enter="addElement" class="main-wrap">
-    <button type="button" @click="addElement" class="add-btn">+ Enter</button>
+  <main @keydown.enter="addItem" class="main-wrap">
+    <button type="button" @click="addItem" class="add-btn">+ Enter</button>
     <gameChessItem
       v-for="btn in btnListState"
       :key="btn.label"
@@ -69,10 +65,6 @@ const onDragEnd = (e: MouseEvent) => {
 </template>
 
 <style lang="sass" scoped>
-$black: #000
-$white: #fff
-$breakpoint: 768px
-
 .main-wrap
   width: 500px
   height: 500px

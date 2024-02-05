@@ -49,9 +49,6 @@ const onDoubleClick = () => {
 </template>
 
 <style lang="sass" scoped>
-$black: #000
-$orange: #f60
-$breakpoint: 768px
 .btn-item
   position: absolute
   left: 50%
