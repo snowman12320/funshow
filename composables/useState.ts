@@ -1,19 +1,29 @@
-export const useBtnListStore = () => {
-  let btnListState = reactive([{ label: 1, color: '#000' }]);
+// 1.
+export let useBtnListStore = () =>
+  useState('btnListState', () => {
+    const btnListState = ref([{ label: 1, color: '#000' }]);
+    return btnListState;
+  });
 
-  const delItem = (label: number) => {
-    btnListState = btnListState.filter(
-      (item: { label: number }) => item.label !== label
-    );
-  };
+// 2.
+// export const useBtnListStore = () => {
+//   let btnListState = reactive([{ label: 1, color: '#000' }]);
 
-  const addItem = () => {
-    let label: number = btnListState.length + 1;
-    let color: string = btnListState.length % 2 === 0 ? '#000' : '#fff';
-    btnListState.push({ label, color });
-  };
+//   const delItem = (label: number) => {
+//     btnListState = btnListState.filter(
+//       (item: { label: number }) => item.label !== label
+//     );
+//   };
 
-  const itemCount = computed(() => btnListState);
+//   const addItem = () => {
+//     let label: number = btnListState.length + 1;
+//     let color: string = btnListState.length % 2 === 0 ? '#000' : '#fff';
+//     btnListState.push({ label, color });
+//   };
 
-  return [btnListState, delItem, addItem, itemCount];
-};
+//   const itemCount = computed(() => btnListState); // 嘗試用compute去同步狀態，但是沒有成功
+
+// return [btnListState, delItem, addItem, itemCount]; //! 要依照順序引用
+// };
+
+// 3. how to use useState ,let useState is have same status

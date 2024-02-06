@@ -1,20 +1,24 @@
 <script setup lang="ts">
-// let btnListState = useBtnListStore() as Array<{ label: number; color: string }>;
-const [btnListState, delItem, addItem] = useBtnListStore();
+// 1.
+const btnListState = useBtnListStore();
 
-// const addItem = (() => {
-//   let label: number = btnListState.value.length + 1;
-//   return () => {
-//     let color: string = btnListState.value.length % 2 === 0 ? '#000' : '#fff';
-//     btnListState.value.push({ label, color });
-//     label++;
-//   };
-// })();
+const addItem = (() => {
+  let label: number = btnListState.value.length + 1;
+  return () => {
+    let color: string = btnListState.value.length % 2 === 0 ? '#000' : '#fff';
+    btnListState.value.push({ label, color });
+    label++;
+  };
+})();
+
+// 2.
+// addItem in useBtnListStore.ts
+// const [btnListState, delItem, addItem, itemCount] = useBtnListStore();
 
 onMounted(() => {
   window.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
-      // addItem();
+      addItem();
     }
   });
 });
@@ -45,7 +49,7 @@ const onDragEnd = (e: MouseEvent) => {
   ) {
     btnListState.value = btnListState.value.filter(
       (item: btnListState) =>
-        item.label !== parseInt((e.target as Element).innerText)
+        item.label !== parseInt((e.target as HTMLElement).innerText)
     );
     window.alert('Haha, your chess piece fell.');
   }
@@ -71,7 +75,7 @@ const onDragEnd = (e: MouseEvent) => {
   height: 500px
   margin: 0 auto
   border: 2px solid $black
-  background-image: url('@/assets/bg.jpg')
+  // background-image: url('@/assets/bg.jpg')
   background-repeat: no-repeat
   background-size: contain
   position: relative

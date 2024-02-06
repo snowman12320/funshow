@@ -1,3 +1,4 @@
-export interface BtnListState {
-  value: { label: string; color: string }[];
+export interface btnListState {
+  label: number;
+  color: string;
 }

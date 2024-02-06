@@ -13,7 +13,6 @@ onMounted(() => {
 
 <template>
   <main>
-    <h1>Five-in-a-Row (game)</h1>
     <section>
       <gameDraggableItem />
       <gameSidebarItem />

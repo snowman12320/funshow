@@ -1,6 +1,5 @@
 <template>
   <main>
-    <h1>Five-in-a-Row (game)</h1>
     <nuxt-link to="/GameView">START</nuxt-link>
   </main>
 </template>

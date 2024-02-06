@@ -1,32 +1,26 @@
 <script lang="ts" setup>
-// let btnListState = useBtnListStore() as Array<{ label: number; color: string }>; // object type
+// 1.
+let btnListState = useBtnListStore(); // object type
 
-// const delItem = useBtnListStore();
+const delItem = (label: number) => {
+  btnListState.value = [...btnListState.value]; // copy to become array
+  btnListState.value = btnListState.value.filter(
+    (item: { label: number }) => item.label !== label
+  );
+};
 
-const [btnListState, delItem, addItem,itemCount] = useBtnListStore();
-
-
-console.log(itemCount);
-// const delItem = (label: number) => {
-//   if (Array.isArray(btnListState)) {
-//     btnListState = btnListState.filter(
-//       (item: { label: number }) => item.label !== label
-//     );
-//   } else {
-//     btnListState.value = (btnListState as { value: { label: number; color: string }[] }).value.filter(
-//       (item: { label: number }) => item.label !== label
-//     );
-//   }
-// };
+// 2.
+// const [btnListState, delItem, addItem, itemCount] = useBtnListStore();
+// console.log(itemCount.value);
 </script>
 
 <template>
   <main>
-    <div class="item" v-for="item in itemCount" :key="item.label">
+    <div class="item" v-for="item in btnListState" :key="item.label">
       <span>{{ item.label }}</span>
       <button type="button" @click="delItem(item.label)">Delete</button>
     </div>
-    <p v-if="itemCount.length === 0" class="tip">List is empty.</p>
+    <p v-if="btnListState.length === 0" class="tip">List is empty.</p>
   </main>
 </template>
 
