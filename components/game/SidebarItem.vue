@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // 1.
-let btnListState = useBtnListStore(); // object type
+const btnListState = useBtnListStore(); // object type
 
 const delItem = (label: number) => {
   btnListState.value = [...btnListState.value]; // copy to become array

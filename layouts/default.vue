@@ -10,4 +10,6 @@ main
   height: 95vh
   display: grid
   place-items: center
+  h1
+    margin-bottom: 1em
 </style>

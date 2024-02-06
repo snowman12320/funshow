@@ -3,11 +3,11 @@ const whiteMask = ref<HTMLElement>(null!);
 
 onMounted(() => {
   whiteMask.value.style.display = 'none';
-  // whiteMask.value?.addEventListener('animationend', () => {
-  //   if (whiteMask.value) {
-  //     whiteMask.value.style.display = 'none';
-  //   }
-  // });
+  whiteMask.value?.addEventListener('animationend', () => {
+    if (whiteMask.value) {
+      whiteMask.value.style.display = 'none';
+    }
+  });
 });
 </script>
 
@@ -29,9 +29,7 @@ h1
     margin-bottom: 0
 section
   display: grid
-  grid-template-columns: 3fr 1fr
-  grid-gap: 1em
-  margin: 1em auto
+  grid-template-columns: 1fr 1fr
   @media (max-width: $breakpoint)
     margin-top: 5em
     grid-template-columns: 1fr
