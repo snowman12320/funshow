@@ -8,30 +8,19 @@ defineProps({
 
 const btnItem = ref<HTMLElement | null>(null);
 
-const onMouseDrag = ({
-  movementX,
-  movementY,
-}: {
-  movementX: number;
-  movementY: number;
-}) => {
-  let getContainerStyle = window.getComputedStyle(btnItem.value as Element);
-  let leftValue = parseInt(getContainerStyle.left);
-  let topValue = parseInt(getContainerStyle.top);
-  (btnItem.value as HTMLElement).style.left = `${leftValue + movementX}px`;
-  (btnItem.value as HTMLElement).style.top = `${topValue + movementY}px`;
-};
-
-const onMouseDown = () => {
-  (btnItem.value as HTMLElement).addEventListener('mousemove', onMouseDrag);
-};
-
-const onMouseUp = () => {
-  (btnItem.value as HTMLElement).removeEventListener('mousemove', onMouseDrag);
-};
-
 const onDoubleClick = () => {
   window.alert('double click');
+};
+
+import { useDraggable } from '@vueuse/core';
+const { x, y, style } = useDraggable(btnItem, {
+  initialValue: { x: 520, y: 400 },
+});
+
+import { defineEmits } from 'vue';
+const emit = defineEmits(['dragEnd']);
+const onDragEnd = () => {
+  emit('dragEnd', x.value, y.value);
 };
 </script>
 
@@ -39,10 +28,10 @@ const onDoubleClick = () => {
   <div
     ref="btnItem"
     class="btn-item"
-    @mousedown="onMouseDown"
-    @mouseup="onMouseUp"
-    @mouseleave="onMouseUp"
     @dblclick="onDoubleClick"
+    :style="style"
+    style="position: fixed"
+    @mouseup="onDragEnd"
   >
     {{ label }}
   </div>
@@ -50,7 +39,7 @@ const onDoubleClick = () => {
 
 <style lang="sass" scoped>
 .btn-item
-  position: absolute
+  position: fixed
   left: 50%
   top: 50%
   height:2rem

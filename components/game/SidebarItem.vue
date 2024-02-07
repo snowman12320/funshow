@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// 1.
 const btnListState = useBtnListStore(); // object type
 
 const delItem = (label: number) => {
@@ -9,9 +8,6 @@ const delItem = (label: number) => {
   );
 };
 
-// 2.
-// const [btnListState, delItem, addItem, itemCount] = useBtnListStore();
-// console.log(itemCount.value);
 </script>
 
 <template>

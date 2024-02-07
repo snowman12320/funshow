@@ -2,7 +2,6 @@
 const whiteMask = ref<HTMLElement>(null!);
 
 onMounted(() => {
-  whiteMask.value.style.display = 'none';
   whiteMask.value?.addEventListener('animationend', () => {
     if (whiteMask.value) {
       whiteMask.value.style.display = 'none';

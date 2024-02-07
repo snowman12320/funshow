@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// 1.
 const btnListState = useBtnListStore();
 
 const addItem = (() => {
@@ -11,10 +10,6 @@ const addItem = (() => {
   };
 })();
 
-// 2.
-// addItem in useBtnListStore.ts
-// const [btnListState, delItem, addItem, itemCount] = useBtnListStore();
-
 onMounted(() => {
   window.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -23,16 +18,9 @@ onMounted(() => {
   });
 });
 
-const onDragEnd = (e: MouseEvent) => {
-  let { movementX, movementY } = e;
-  let getContainerStyle: CSSStyleDeclaration = window.getComputedStyle(
-    e.target as Element
-  );
-  let leftValue: number = parseInt(getContainerStyle.left);
-  let topValue: number = parseInt(getContainerStyle.top);
-  let width: number = parseInt(getContainerStyle.width);
-  let height: number = parseInt(getContainerStyle.height);
-  let mainWidth: number = parseInt(
+const onDragEnd = (x: number, y: number) => {
+  console.log(x, y);
+    let mainWidth: number = parseInt(
     window.getComputedStyle(document.querySelector('.main-wrap') as Element)
       .width
   );
@@ -40,31 +28,19 @@ const onDragEnd = (e: MouseEvent) => {
     window.getComputedStyle(document.querySelector('.main-wrap') as Element)
       .height
   );
-
-  if (
-    leftValue + movementX < 0 ||
-    leftValue + movementX + width > mainWidth + 30 ||
-    topValue + movementY < 0 ||
-    topValue + movementY + height > mainHeight + 20
-  ) {
-    btnListState.value = btnListState.value.filter(
-      (item: btnListState) =>
-        item.label !== parseInt((e.target as HTMLElement).innerText)
-    );
-    window.alert('Haha, your chess piece fell.');
-  }
+  console.log(mainWidth, mainHeight);
 };
 </script>
 
 <template>
-  <main @keydown.enter="addItem" class="main-wrap">
+  <main @keydown.enter="addItem" class="main-wrap" ref="parent">
     <button type="button" @click="addItem" class="add-btn">+ Enter</button>
     <gameChessItem
       v-for="btn in btnListState"
       :key="btn.label"
       :label="btn.label"
       :style="{ backgroundColor: btn.color }"
-      @mouseout="onDragEnd"
+      @dragEnd="onDragEnd"
     />
   </main>
 </template>
