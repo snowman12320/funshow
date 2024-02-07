@@ -17,11 +17,7 @@ const { x, y, style } = useDraggable(btnItem, {
   initialValue: { x: 520, y: 400 },
 });
 
-import { defineEmits } from 'vue';
-const emit = defineEmits(['dragEnd']);
-const onDragEnd = () => {
-  emit('dragEnd', x.value, y.value);
-};
+
 </script>
 
 <template>
@@ -31,7 +27,6 @@ const onDragEnd = () => {
     @dblclick="onDoubleClick"
     :style="style"
     style="position: fixed"
-    @mouseup="onDragEnd"
   >
     {{ label }}
   </div>

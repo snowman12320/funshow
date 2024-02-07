@@ -18,18 +18,7 @@ onMounted(() => {
   });
 });
 
-const onDragEnd = (x: number, y: number) => {
-  console.log(x, y);
-    let mainWidth: number = parseInt(
-    window.getComputedStyle(document.querySelector('.main-wrap') as Element)
-      .width
-  );
-  let mainHeight: number = parseInt(
-    window.getComputedStyle(document.querySelector('.main-wrap') as Element)
-      .height
-  );
-  console.log(mainWidth, mainHeight);
-};
+
 </script>
 
 <template>
@@ -40,7 +29,6 @@ const onDragEnd = (x: number, y: number) => {
       :key="btn.label"
       :label="btn.label"
       :style="{ backgroundColor: btn.color }"
-      @dragEnd="onDragEnd"
     />
   </main>
 </template>
@@ -51,7 +39,7 @@ const onDragEnd = (x: number, y: number) => {
   height: 500px
   margin: 0 auto
   border: 2px solid $black
-  // background-image: url('@/assets/bg.jpg')
+  background-image: url('@/assets/bg.jpg')
   background-repeat: no-repeat
   background-size: contain
   position: relative
