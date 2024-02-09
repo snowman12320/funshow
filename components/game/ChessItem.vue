@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   label: {
     type: Number,
     required: true,
@@ -17,7 +17,11 @@ const { x, y, style } = useDraggable(btnItem, {
   initialValue: { x: 520, y: 400 },
 });
 
-
+import { defineEmits } from 'vue';
+const emit = defineEmits(['dragEnd']);
+const onDragEnd = () => {
+  emit('dragEnd', x.value, y.value, props.label);
+};
 </script>
 
 <template>
@@ -27,6 +31,7 @@ const { x, y, style } = useDraggable(btnItem, {
     @dblclick="onDoubleClick"
     :style="style"
     style="position: fixed"
+    @mousemove="onDragEnd"
   >
     {{ label }}
   </div>

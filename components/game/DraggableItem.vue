@@ -18,7 +18,24 @@ onMounted(() => {
   });
 });
 
-
+const onDragEnd = (x: number, y: number, label: number) => {
+  let mainWrap = document.querySelector('.main-wrap') as HTMLElement;
+  let mainWidth: number = mainWrap.offsetWidth;
+  let mainHeight: number = mainWrap.offsetHeight;
+  let mainLeft: number = mainWrap.offsetLeft;
+  let mainTop: number = mainWrap.offsetTop;
+  if (
+    x < mainLeft ||
+    x > mainLeft + mainWidth ||
+    y < mainTop ||
+    y > mainTop + mainHeight
+  ) {
+    btnListState.value = btnListState.value.filter(
+      (item: { label: number }) => item.label !== label
+    );
+    window.alert('Haha, your chess piece fell.');
+  }
+};
 </script>
 
 <template>
