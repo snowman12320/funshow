@@ -10,10 +10,9 @@ export default defineNuxtConfig({
     autoImport: true,
     dirs: ['composables/**', 'types/**'],
   },
-  css: ['~/assets/sass/app.sass'], // 總檔，引入所有的樣式，並操作樣式
+  css: ['~/assets/sass/app.sass'],
   vite: {
     css: {
-      // vue檔，中的style樣式，要放這才能正常使用
       preprocessorOptions: {
         sass: {
           additionalData: `
