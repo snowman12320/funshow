@@ -46,6 +46,7 @@ const onDragEnd = (x: number, y: number, label: number) => {
       :key="btn.label"
       :label="btn.label"
       :style="{ backgroundColor: btn.color }"
+      @dragEnd="onDragEnd"
     />
   </main>
 </template>
