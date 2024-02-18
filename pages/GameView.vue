@@ -15,6 +15,10 @@ onMounted(() => {
     <section>
       <gameDraggableItem />
       <gameSidebarItem />
+      <gameChatItem />
+    </section>
+    <section>
+
     </section>
     <div ref="whiteMask" class="white-mask"></div>
   </main>
