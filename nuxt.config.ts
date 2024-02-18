@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
-  modules: ['@vueuse/nuxt'],
+  modules: ['@vueuse/nuxt', 'nuxt-socket-io'],
   imports: {
     autoImport: true,
     dirs: ['composables/**', 'types/**'],
@@ -21,5 +21,13 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+  io: {
+    sockets: [
+      {
+        name: 'main',
+        url: 'http://localhost:3000',
+      },
+    ],
   },
 });
