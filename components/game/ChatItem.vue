@@ -23,7 +23,7 @@ const { $io } = useNuxtApp();
 
 const messages = ref([]);
 const newMessage = ref('');
-const username = ref('Player 1');
+const username = ref('Player A');
 
 const sendMessage = () => {
   if (!newMessage.value) return;

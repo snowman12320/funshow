@@ -25,11 +25,7 @@ export default defineNuxtConfig({
     },
   },
   socketIO: {
-    /** Required */
     socketFunctions: functions,
-    /** Optional - these are the defaults
-     * managerOptions is of type ManagerOptions from the socket.io-client library
-     */
     clientOptions: {
       uri: '/', // If you want to connect to a different server than the one created by this plugin
       managerOptions: {},

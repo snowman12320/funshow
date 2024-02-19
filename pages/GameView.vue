@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useToggle } from '@vueuse/core';
+
 const whiteMask = ref<HTMLElement>(null!);
 
 onMounted(() => {
@@ -6,10 +8,7 @@ onMounted(() => {
   whiteMask.value?.addEventListener('animationend', () => {});
 });
 
-const toggleBtn = () => {
-  const chatItem = document.querySelector('.chat-item') as HTMLElement;
-  chatItem.style.display = chatItem.style.display === 'none' ? 'flex' : 'none';
-};
+const [isChatOpen, toggleChat] = useToggle(true);
 </script>
 
 <template>
@@ -17,8 +16,10 @@ const toggleBtn = () => {
     <section>
       <gameDraggableItem />
       <gameSidebarItem />
-      <gameChatItem class="chat-item" />
-      <button @click="toggleBtn" class="toggleBtn" type="button">Chat</button>
+      <gameChatItem :class="{ 'chat-item': isChatOpen }" />
+      <button @click="toggleChat()" class="toggleBtn" type="button">
+        Chat
+      </button>
     </section>
     <div ref="whiteMask" class="white-mask">
       <p>Loading . . .</p>
