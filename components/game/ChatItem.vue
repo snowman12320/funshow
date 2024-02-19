@@ -17,19 +17,20 @@
 <script setup>
 const { $io } = useNuxtApp();
 
-const messages = ref([]); // reactive property to hold the messages
-const newMessage = ref(''); // reactive property to hold the new message
-const username = ref('玩家一'); // reactive property to hold the username
+const messages = ref([]); 
+const newMessage = ref(''); 
+const username = ref('玩家A'); 
 
 const sendMessage = () => {
+  if (!newMessage.value) return;
   $io.emit('send message', { text: newMessage.value, user: username.value });
-  messages.value.push({ text: newMessage.value, user: username.value }); // push the new message into the array
+  messages.value.push({ text: newMessage.value, user: username.value }); 
   newMessage.value = '';
 };
 
 onMounted(() => {
   $io.on('connect', () => {
-    console.log('connected 123', $io.id);
+    console.log('connected', $io.id);
   });
   $io.on('user disconnected', function (data) {
     // alert(`${data} got disconnected`);
@@ -40,8 +41,7 @@ onMounted(() => {
   });
 
   $io.on('new message sent', (data) => {
-    // alert(data);
-    messages.value.push(data); // push the new message into the array
+    messages.value.push(data); 
   });
 });
 </script>

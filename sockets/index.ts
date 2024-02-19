@@ -1,27 +1,23 @@
 import { Server, Socket } from 'socket.io';
 
+let userCount = 0;
+
 export default function (io: Server) {
-  let userCount = 0;
-
   io.on('connection', (socket: Socket) => {
-    let username = userCount === 0 ? '玩家一' : '玩家二';
-    console.log(username);
-    userCount += 1;
+    let username = userCount === 0 ? '玩家A' : '玩家B';
     socket.broadcast.emit('assign username', username);
+    if (userCount === 0) userCount += 1;
 
-    // console.log(socket);
     socket.on('send message', (data) => {
-      // console.log(data);
       socket.broadcast.emit('new message sent', data);
     });
 
-    console.log('socket connected 123', socket.id);
     socket.on('join room', (room) => {
       socket.join(room);
     });
 
     socket.on('disconnect', (reason) => {
-      console.log('socket disconnected');
+      console.log('socket disconnected by restart than userCount is', userCount);
       io.emit('user disconnected', socket.id);
     });
   });

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 useSeoMeta({
   title: 'Five-in-a-Row (game)',
   ogTitle: 'fun show',

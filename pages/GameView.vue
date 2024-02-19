@@ -3,11 +3,10 @@ const whiteMask = ref<HTMLElement>(null!);
 
 onMounted(() => {
   whiteMask.value?.addEventListener('animationend', () => {
-    if (whiteMask.value) {
-      whiteMask.value.style.display = 'none';
-    }
+    whiteMask.value.style.display = 'none';
   });
 });
+
 </script>
 
 <template>
@@ -17,10 +16,7 @@ onMounted(() => {
       <gameSidebarItem />
       <gameChatItem />
     </section>
-    <section>
-
-    </section>
-    <div ref="whiteMask" class="white-mask"></div>
+    <!-- <div ref="whiteMask" class="white-mask"></div> -->
   </main>
 </template>
 
