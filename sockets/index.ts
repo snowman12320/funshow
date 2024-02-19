@@ -4,7 +4,7 @@ let userCount = 0;
 
 export default function (io: Server) {
   io.on('connection', (socket: Socket) => {
-    let username = userCount === 0 ? '玩家A' : '玩家B';
+    let username = userCount === 0 ? 'Player A' : 'Player B';
     socket.broadcast.emit('assign username', username);
     if (userCount === 0) userCount += 1;
 

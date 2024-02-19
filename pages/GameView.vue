@@ -2,11 +2,14 @@
 const whiteMask = ref<HTMLElement>(null!);
 
 onMounted(() => {
-  whiteMask.value?.addEventListener('animationend', () => {
-    whiteMask.value.style.display = 'none';
-  });
+  whiteMask.value.style.display = 'none';
+  whiteMask.value?.addEventListener('animationend', () => {});
 });
 
+const toggleBtn = () => {
+  const chatItem = document.querySelector('.chat-item') as HTMLElement;
+  chatItem.style.display = chatItem.style.display === 'none' ? 'flex' : 'none';
+};
 </script>
 
 <template>
@@ -14,9 +17,12 @@ onMounted(() => {
     <section>
       <gameDraggableItem />
       <gameSidebarItem />
-      <gameChatItem />
+      <gameChatItem class="chat-item" />
+      <button @click="toggleBtn" class="toggleBtn" type="button">Chat</button>
     </section>
-    <!-- <div ref="whiteMask" class="white-mask"></div> -->
+    <div ref="whiteMask" class="white-mask">
+      <p>Loading . . .</p>
+    </div>
   </main>
 </template>
 
@@ -35,7 +41,7 @@ section
 
 .white-mask
   position: fixed
-  display: block
+  display: flex
   top: 0
   left: 0
   width: 100%
@@ -44,6 +50,30 @@ section
   z-index: 1
   background: $black
   animation: fade-in 2s ease-in-out
+  justify-content: center
+  align-items: center
+  p
+    color: $white
+
+.chat-item
+  display: none
+
+.toggleBtn
+  position: fixed
+  bottom: 1em
+  right: 1em
+  z-index: 2
+  border: 1px solid $black
+  height: 4em
+  width: 4em
+  text-align: center
+  cursor: pointer
+  border-radius: 50%
+  background: $black
+  color: $white
+  &:hover
+    background: $white
+    color: $black
 
 @keyframes fade-in
   from
