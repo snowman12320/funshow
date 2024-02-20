@@ -9,16 +9,6 @@ const addItem = (() => {
     label++;
   };
 })();
-
-onMounted(() => {
-  window.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      addItem();
-    }
-  });
-});
-
-
 </script>
 
 <template>

@@ -5,7 +5,6 @@ const whiteMask = ref<HTMLElement>(null!);
 
 onMounted(() => {
   whiteMask.value.style.display = 'none';
-  whiteMask.value?.addEventListener('animationend', () => {});
 });
 
 const [isChatOpen, toggleChat] = useToggle(true);
