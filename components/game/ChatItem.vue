@@ -7,7 +7,8 @@
         :key="index"
         :class="{ 'own-message': msg.user === username }"
       >
-        <strong v-if="msg.user !== username">{{ msg.user }}:</strong> {{ msg.text }}
+        <strong v-if="msg.user !== username">{{ msg.user }}:</strong>
+        {{ msg.text }}
       </li>
     </ul>
 
@@ -23,7 +24,7 @@ const { $io } = useNuxtApp();
 
 const messages = ref([]);
 const newMessage = ref('');
-const username = ref('Player A');
+const username = ref('');
 
 const sendMessage = () => {
   if (!newMessage.value) return;
@@ -33,20 +34,30 @@ const sendMessage = () => {
 };
 
 onMounted(() => {
-  $io.on('connect', () => {
-    console.log('connected', $io.id);
-  });
-  $io.on('user disconnected', function (data) {
-    // alert(`${data} got disconnected`);
+  $io.on('new user connected', () => {
+    console.log('connected', $io);
   });
 
   $io.on('assign username', (data) => {
     username.value = data;
   });
 
-  $io.on('new message sent', (data) => {
+  $io.on('new message sent',function (data) {
     messages.value.push(data);
+    console.log('new message sent2', data);
   });
+
+  // 成功訊息傳遞
+  $io.on('user disconnected', function (data) {
+    // alert(`${data} got disconnected`);
+  });
+
+
+  let name = window.prompt('Enter your username', 'Anonymous');
+  if (name) {
+    username.value = name;
+    $io.emit('assign username', name);
+  }
 });
 </script>
 

@@ -8,6 +8,20 @@ onMounted(() => {
 });
 
 const [isChatOpen, toggleChat] = useToggle(true);
+
+
+// test cloud api  
+const rooms = ref([]);
+onMounted(async () => {
+  try {
+    const response = await fetch('https://practice-hotel-node.onrender.com/rooms');
+    const data = await response.json(); // parse JSON
+    rooms.value = data;
+    alert(JSON.stringify(data));
+  } catch (error) {
+    console.error(error);
+  }
+});
 </script>
 
 <template>
